@@ -17,9 +17,8 @@ app.listen(PORT, async ()=>{
     //     content : 'Third tweet',
     //     userEmail:'22112@iiitu.ac.in'
         
-    // });
-    const repo = new TweetRepositoy();
-
-    const tweet = await repo.getWithComments('67e7bbab6c27d83abae0770b');
-    console.log(tweet);
+    // // });
+    // const repo = new TweetRepositoy();
+    // const tweet = await repo.getAll(0,1);
+    // console.log(tweet[0].contentWithEmail);
 });

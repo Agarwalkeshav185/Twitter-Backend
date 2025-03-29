@@ -36,7 +36,7 @@ class TweetRepositoy {
 
     getWithComments = async (tweetId) =>{
         try {
-            const tweet = await Tweet.findById(tweetId).populate({path : 'comments'});
+            const tweet = await Tweet.findById(tweetId).populate({path : 'comments'}).lean();
             return tweet;
         } catch (error) {
             console.log('Repository Error');
@@ -63,6 +63,17 @@ class TweetRepositoy {
             throw error;
         }
     };
+
+    async getAll(offset, limit){
+        try {
+            const tweet = await Tweet.find().limit(limit).skip(offset);
+            return tweet;
+        } catch (error) {
+            console.log('Repository Error');
+            throw error;
+        }
+        
+    }
 }
 
 module.exports = TweetRepositoy;
