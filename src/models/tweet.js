@@ -18,6 +18,11 @@ const tweetSchema = new mongoose.Schema({
 
 tweetSchema.virtual('contentWithEmail').get(function process(){
     return `${this.content} \nCreated By ${this.userEmail}`;
+});
+tweetSchema.pre('save', function (next){
+    console.log('Inside a Hook');
+    this.content = this.content + '.....';
+    next();
 })
 
 
