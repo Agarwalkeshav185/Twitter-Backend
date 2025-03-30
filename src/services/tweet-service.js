@@ -9,8 +9,9 @@ export default class TweetService {
     async create(data){
         try {
             const content = data.content;
-            const tags = content.match(/#[a-zA-Z0-9_]+/g).map((tag) => tag.substring(1).toLowerCase());  // this regex extracts hashtags
-
+            let tags = content.match(/#[a-zA-Z0-9_]+/g).map((tag) => tag.substring(1).toLowerCase());  // this regex extracts hashtags
+            const uniqueTags = new Set(tags);
+            tags = [...uniqueTags];
             // Creating Tweets.
             const tweet = await this.tweetRepositoy.create(data);
 
