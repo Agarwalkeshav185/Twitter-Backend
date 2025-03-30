@@ -1,37 +1,9 @@
 import Tweet from '../models/tweet.js';
+import CrudRepository from './crud-repository.js';
 
-export default class TweetRepository {
-
-    create = async (data) =>{
-        try {
-            const tweet = await Tweet.create(data);
-            return tweet;
-        } catch (error) {
-            console.log('Repository Error');
-            throw error;
-        }
-    };
-
-    get  = async(id) =>{
-        try {
-            const tweet = await Tweet.findById(id);
-            return tweet;
-        } catch (error) {
-            console.log('Repository Error');
-            throw error;
-        }
-    }
-
-    getByEmail = async(userEmail) => {
-        try {
-            const tweet = await Tweet.findOne({
-                userEmail : userEmail
-            });
-            return tweet;
-        } catch (error) {
-            console.log('Repository Error');
-            throw error;
-        }
+export default class TweetRepository extends CrudRepository{
+    constructor(){
+        super(Tweet);
     }
 
     getWithComments = async (tweetId) =>{
@@ -44,16 +16,6 @@ export default class TweetRepository {
         }
 
     }
-
-    destroy  =  async (id) =>{
-        try {
-            const tweet = await Tweet.findByIdAndDelete(id);
-            return tweet;
-        } catch (error) {
-            console.log('Repository Error');
-            throw error;
-        }
-    };
 
     async getAll(offset, limit){
         try {

@@ -11,12 +11,14 @@ const likeSchema = new mongoose.Schema({
         refPath : 'onModel',
         required : true
     },
+    // userid add karni h yaha 
     user : {
         type: mongoose.Schema.Types.ObjectId,
         ref : 'User',
         required : true
-    }
-    // userid add karni h yaha 
+    },
+    
+    
 }, {timestamps : true});
 
 const Like = mongoose.model('Like',likeSchema);
