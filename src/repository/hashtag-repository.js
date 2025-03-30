@@ -1,6 +1,6 @@
 import Hashtag from '../models/hashtags.js';
 
-export default class HashtagRepository {
+export default class HashTagRepository {
 
     create = async (data) =>{
         try {
