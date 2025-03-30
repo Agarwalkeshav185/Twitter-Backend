@@ -1,10 +1,7 @@
-const express = require('express');
-const connect = require('./config/database');
+import express from 'express';
+import {connect} from './config/database.js';
 
-
-const {PORT} = require('./config/serverConfig');
-
-const Tweet = require('./models/tweet');
+import  {PORT} from './config/serverConfig.js';
 
 const app  = express();
 
@@ -12,4 +9,6 @@ app.listen(PORT, async ()=>{
     console.log(`Server started at port :- ${PORT}`);
     await connect();
     console.log('MongoDb Connected');
+
+
 });
