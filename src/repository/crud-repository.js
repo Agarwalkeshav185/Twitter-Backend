@@ -8,6 +8,7 @@ export default class CrudRepository{
     async create(data){
         try {
             const result = await this.model.create(data);
+            return result;
         } catch (error) {
             console.log('CRUD Repository Error');
             throw error;
@@ -16,9 +17,9 @@ export default class CrudRepository{
 
     async destroy(id){
         try {
-            const result = await this.model.findByIdAndDelete(id);
+            const result = await this.model.findByIdAndDelete(id, {new : true});
             if(!result){
-                throw Error('No data is present in the Database');
+                throw new Error('No data is present in the Database');
             }
             return result;
         } catch (error) {

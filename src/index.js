@@ -7,6 +7,9 @@ import ApiRoutes from './Routes/index.js';
 
 import Hashtag from './models/hashtags.js';
 import service from './services/tweet-service.js';
+import {UserRepository} from './repository/index.js';
+import LikeService from './services/like-service.js';
+
 
 const app  = express();
 
@@ -17,11 +20,17 @@ app.listen(PORT, async ()=>{
     console.log(`Server started at port :- ${PORT}`);
     await connect();
     console.log('MongoDb Connected');
-
-    // const ser = new service();
-    // const hashtag = await ser.create({
-    //     content:'KESHAV is #Excited and #naughty and also a way behind than others, he has to do #HARDWORK.'
+    const repo = new UserRepository();
+    // const user = await repo.create({
+    //     email:'22136@iiitu.ac.in',
+    //     password:'123456',
+    //     name: 'Keshav'
     // });
-    // console.log(hashtag);
+
+    // const ser = new LikeService();
+
+
+    // ser.toggleLike( '67f017b8198450640c96a91d' , 'Tweet' , '67e9ac220fa11a1d2a64c89a' );
+    // console.log(ser);
 
 });

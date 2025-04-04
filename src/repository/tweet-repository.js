@@ -25,5 +25,15 @@ export default class TweetRepository extends CrudRepository{
             console.log('Repository Error');
             throw error;
         }  
-    }    
+    }
+    
+    find(id, modelType){
+        try {
+            const result = Tweet.findById(id).populate({path:`${modelType}`});;
+            return result;
+        } catch (error) {
+            console.log('Tweet Repository Error');
+            throw error;
+        }
+    }
 }
