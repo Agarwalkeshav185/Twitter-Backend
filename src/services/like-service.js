@@ -9,10 +9,8 @@ class LikeService {
 
     async toggleLike(modelId, modelType, userId){
         try {
-            console.log(modelId, modelType, userId);
             if(modelType == 'Tweet'){
                 var likeable = await this.tweetRepository.find(modelId, 'likes');
-                // console.log(likeable);
             }
             else if(modelType == 'Comment'){
                 // TODO
@@ -26,7 +24,6 @@ class LikeService {
                 onModel : modelType,
                 likeable : modelId
             });
-            console.log('exisits:', exists);
             if(exists){
                 likeable.likes.pull(exists.id);
                 await likeable.save();
