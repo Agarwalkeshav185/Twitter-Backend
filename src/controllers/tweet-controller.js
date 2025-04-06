@@ -22,7 +22,28 @@ const createTweet = async (req, res)=>{
     }
 }
 
+const getTweet = async (req, res)=>{
+    try {
+        const response = await tweetService.getTweet(req.params.id);
+        return res.status(200).json({
+            data: response,
+            success : true, 
+            err : {},
+            message : 'Successfully able to get the details of a tweet'
+        });
+    } catch (error) {
+        console.log(error);
+        console.log('Get Tweet Controller Error');
+        return res.status(500).json({
+            message : 'Unable to fetch the Tweet',
+            err : error,
+            success: false,
+            data: {}
+        });
+    }
+}
+
 export {
     createTweet,
-
+    getTweet,
 }

@@ -39,6 +39,20 @@ export default class TweetService {
             throw error;
         }
     }
+
+    async getTweet(tweetId){
+        try {
+            const tweet = await this.tweetRepositoy.getWithComments(tweetId);
+            // if(!tweet){
+            //     throw new Error('Tweet does not exist');
+            // }
+            return tweet;
+        } catch (error) {
+            console.log('Get Tweet Service Error');
+            throw error;
+        }
+
+    }
 }
 
 /*
