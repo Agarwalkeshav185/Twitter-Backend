@@ -11,6 +11,7 @@ export default class CrudRepository{
             return result;
         } catch (error) {
             console.log('CRUD Repository Error');
+            console.log(error);
             throw error;
         }
     }
