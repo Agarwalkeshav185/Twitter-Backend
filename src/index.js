@@ -1,9 +1,11 @@
 import express from 'express';
 import BodyParser from 'body-parser';
+import passport from 'passport';
 
 import {connect} from './config/database.js';
 import  {PORT} from './config/serverConfig.js';
 import ApiRoutes from './Routes/index.js';
+import { passportAuth } from './config/jwt-middleware.js'
 
 // import Hashtag from './models/hashtags.js';
 // import service from './services/tweet-service.js';
@@ -16,7 +18,11 @@ const app  = express();
 app.use(BodyParser.json());
 app.use(BodyParser.urlencoded({extended:true}));
 
+app.use(passport.initialize());
+passportAuth(passport);
+
 app.use('/api', ApiRoutes);
+
 app.listen(PORT, async ()=>{
     console.log(`Server started at port :- ${PORT}`);
     await connect();

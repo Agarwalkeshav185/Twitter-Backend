@@ -14,6 +14,35 @@ class UserService {
             throw error;
         }
     }
+
+    async getUserByEmail(email){
+        try {
+            const user = await this.userRepository.getBy({ email : email });
+            return user;
+        } catch (error) {
+            console.log('login Service Error');
+            throw error;
+        }
+    }
+
+    async signin(data){
+        try {
+            const user = await this.userRepository.getBy({email : data.email});
+            if(!user){
+                throw new Error('User not Found.');
+            }
+            if(! user.comparePassword(data.password)){
+                throw new Error('Incorrect Password.');
+            }
+
+            const token = user.genJWT();
+            return token;
+
+        } catch (error) {
+            console.log('login Service Error');
+            throw error;
+        }
+    }
 }
 
 export default UserService;
