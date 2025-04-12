@@ -4,7 +4,7 @@ const commentService = new CommentService();
 
 const createComment = async (req, res) =>{
     try {
-        const response = await commentService.createComment(req.query.modelId, req.query.modelType, req.body.userId, req.body.content);
+        const response = await commentService.createComment(req.query.modelId, req.query.modelType, req.user.id, req.body.content);
         return res.status(201).json({
             data : response, 
             success : true, 

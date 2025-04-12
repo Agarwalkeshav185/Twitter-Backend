@@ -16,6 +16,6 @@ router.post('/tweets',authenticate, createTweet);
 
 
 router.post('/likes/toggle', toggleLike);
-router.post('/comments/create', createComment);
+router.post('/comments/create',authenticate, createComment);
 
 export default router;

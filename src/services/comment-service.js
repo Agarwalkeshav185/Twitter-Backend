@@ -28,6 +28,7 @@ class CommentService {
             await commentable.save();
             return comment;
         } catch (error) {
+            console.log(error);
             console.log('Comment Service Error');
             throw error;
         }
