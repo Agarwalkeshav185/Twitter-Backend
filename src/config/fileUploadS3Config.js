@@ -17,11 +17,16 @@ const upload = multer({
         s3 : s3,
         bucket : BUCKET_NAME,
         acl : 'public-read',
+        contentType: multers3.AUTO_CONTENT_TYPE,
         metadata : function (req, file, cb) {
             cb(null, { fieldName : file.fieldname});
         },
         key : function (req, file, cb){
-            cb(null, Date.now().toString());
+            const cleanName = file.originalname.replace(/\s+/g, '-');
+            const filename = Date.now().toString() + '-' + cleanName;
+            cb(null, filename);
+
+            // cb(null, Date.now().toString());
         }
     })
 });
